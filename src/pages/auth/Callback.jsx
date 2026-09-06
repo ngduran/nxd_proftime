@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { cn } from '../../utils/cn';
+import { storage } from '../../utils/storage';
 
 const styles = {
   container: cn(
@@ -21,7 +22,8 @@ export function Callback() {
     const token = searchParams.get('token');
 
     if (token) {
-      console.log('Token capturado com sucesso:', token);
+      storage.setToken(token);
+      console.log('Token salvo com sucesso no localStorage!');
       navigate('/');
     } else {
       console.error("Erro na autenticação: parâmetro 'token' não encontrado na URL.");
